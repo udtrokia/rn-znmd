@@ -1,0 +1,256 @@
+import React, { Component } from 'react'
+import {
+    StyleSheet,
+    StatusBar,
+    ScrollView,
+    TouchableOpacity,    
+    View,
+    Image,
+    Text,
+    DeviceEventEmitter    
+} from 'react-native'
+
+import {hradio,wradio} from '../../radio'
+
+export default class Order extends Component{
+    static navigationOptions={
+	header:null,
+	tabBarLabel:<Text style={{fontSize:hradio*20}}>订单</Text>,
+	tabBarIcon:({focused})=>{
+	    if(focused==false){
+	    return(<Image
+	     style={{height:hradio*45,width:wradio*48}}
+	     source={require('../static/order.png')} />)}else{
+		 return(
+			 <Image
+		     style={{height:hradio*48,width:wradio*48}}
+		     source={require('../static/order_tap.png')} />   
+		 )
+	     }
+	}
+    }
+    constructor(props){
+        super(props);
+        this.state = {
+	    all:false
+        }
+    }
+    componentDidMount(){
+	DeviceEventEmitter.emit('changeModal',false)
+    }
+    renderBelow=()=>{
+	if(this.state.all){
+	    return(
+		    <ScrollView
+		style={{flex:1}}
+		    >
+		    <Order1 navigate={this.props.navigation.navigate} />
+		    <Order2 navigate={this.props.navigation.navigate}/>
+		    <Order3 navigate={this.props.navigation.navigate}/>
+		    </ScrollView>
+	    )
+	}else{
+	    return(
+		    <ScrollView
+		style={{flex:1}}
+		    >
+		    <Order2 navigate={this.props.navigation.navigate}/>
+		    <Order3 navigate={this.props.navigation.navigate}/>
+		    </ScrollView>
+	    )
+	}
+
+    }
+    render(){
+	return(
+		<View
+	    style={{flex:1}}
+		>
+		<StatusBar
+		translucent={false}
+		backgroundColor='#54aefc'
+		    />	    
+		<Order1 navigate={this.props.navigation.navigate} />
+		<Image
+	    source={require('./static/switchbg.png')}
+	    style={{
+		height:hradio*71,
+		width:wradio*720,
+		marginTop:hradio*5,
+		flexDirection:'row',
+		justifyContent:'center',
+		alignItems:'center'}}
+		>
+		<TouchableOpacity
+	    onPress={()=>{this.setState({all:true})}}
+		>
+		<Image
+	    source={require('./static/allorder.png')}
+	    style={{height:hradio*25,width:wradio*96}}
+		/>
+		</TouchableOpacity>
+		<TouchableOpacity
+	    onPress={()=>{this.setState({all:false})}}
+	    style={{marginLeft:wradio*80}}
+		>
+		<Image
+	    source={require('./static/precommentbtn.png')}
+	    style={{height:hradio*24,width:wradio*72}}
+		/>
+		</TouchableOpacity>				
+		</Image>
+		{this.renderBelow()}
+		</View>
+
+	)
+    }
+}
+
+class Order1 extends Component{
+
+    render(){
+	return(
+		<Image
+	    source={require('./static/order1.png')}
+	    style={{
+		height:hradio*457,width:wradio*720,
+	    }}
+		>
+		<Image
+	    source={require('./static/waitpay.png')}
+	    style={{resizeMode:'contain',height:hradio*25,width:wradio*72,alignSelf:'flex-end',
+		    marginTop:hradio*27,marginRight:wradio*30
+		   }}
+		/>
+		<View
+	    style={{marginTop:hradio*345,flexDirection:'row',height:hradio*71,width:wradio*720}}
+		>
+		<TouchableOpacity
+	    style={{marginLeft:wradio*20}}
+	    onPress={()=>{this.props.navigate('Map')}}
+		>
+		<Image
+	    source={require('../home/static/location.png')}
+	    style={{width:wradio*40,height:hradio*50}}
+		/>
+		</TouchableOpacity>
+		<TouchableOpacity
+	    style={{marginLeft:wradio*420}}
+	    onPress={()=>{this.props.navigate('ChangeOrder')}}
+		>
+		<Image
+	    source={require('./static/changeorder.png')}
+	    style={{width:wradio*100,height:hradio*44}}
+		/>
+		</TouchableOpacity>
+		<TouchableOpacity
+	    style={{marginLeft:wradio*20}}	    
+		>
+		<Image
+	    source={require('./static/prepay.png')}
+	    style={{width:wradio*100,height:hradio*44}}
+		/>
+		</TouchableOpacity>				
+		</View>
+		</Image>
+	)
+    }
+}
+class Order2 extends Component{
+    render(){
+	return(
+		<Image
+	    source={require('./static/order2.png')}
+	    style={{
+		height:hradio*457,width:wradio*720,
+	    }}
+		>
+		<Image
+	    source={require('./static/precomment.png')}
+	    style={{resizeMode:'contain',height:hradio*25,width:wradio*72,alignSelf:'flex-end',
+		    marginTop:hradio*27,marginRight:wradio*30
+		   }}
+		/>
+		<View
+	    style={{marginTop:hradio*345,flexDirection:'row',height:hradio*71,width:wradio*720}}
+		>
+		<TouchableOpacity
+	    style={{marginLeft:wradio*20}}
+	    onPress={()=>{this.props.navigate('Map')}}	    
+		>
+		<Image
+	    source={require('../home/static/location.png')}
+	    style={{width:wradio*40,height:hradio*50}}
+		/>
+		</TouchableOpacity>
+		<TouchableOpacity
+	    style={{marginLeft:wradio*420}}	    
+		>
+		<Image
+	    source={require('./static/moreorder.png')}
+	    style={{width:wradio*102,height:hradio*44}}
+		/>
+		</TouchableOpacity>
+		<TouchableOpacity
+	    onPress={()=>{this.props.navigate('Comment')}}
+	    style={{marginLeft:wradio*20}}
+		>
+		<Image
+	    source={require('./static/comment.png')}
+	    style={{width:wradio*102,height:hradio*44}}
+		/>
+		</TouchableOpacity>				
+		</View>
+		</Image>
+	)
+    }
+}
+class Order3 extends Component{
+    render(){
+	return(
+		<Image
+	    source={require('./static/order3.png')}
+	    style={{
+		height:hradio*457,width:wradio*720,
+	    }}
+		>
+		<Image
+	    source={require('./static/precomment.png')}
+	    style={{height:hradio*25,width:wradio*72,alignSelf:'flex-end',
+		    marginTop:hradio*27,marginRight:wradio*30
+		   }}
+		/>
+		<View
+	    style={{marginTop:hradio*345,flexDirection:'row',height:hradio*71,width:wradio*720}}
+		>
+		<TouchableOpacity
+	    style={{marginLeft:wradio*20}}
+	    onPress={()=>{this.props.navigate('Map')}}	    
+		>
+		<Image
+	    source={require('../home/static/location.png')}
+	    style={{width:wradio*40,height:hradio*50}}
+		/>
+		</TouchableOpacity>
+		<TouchableOpacity
+	    onPress={()=>{this.props.navigate('Comment')}}	    
+	    style={{marginLeft:wradio*420}}	    	    
+		>
+		<Image
+	    source={require('./static/moreorder.png')}
+	    style={{width:wradio*102,height:hradio*44}}
+		/>
+		</TouchableOpacity>
+		<TouchableOpacity
+	    style={{marginLeft:wradio*20}}
+		>
+		<Image
+	    source={require('./static/comment.png')}
+	    style={{width:wradio*102,height:hradio*44}}
+		/>
+		</TouchableOpacity>				
+		</View>
+		</Image>
+	)
+    }
+}

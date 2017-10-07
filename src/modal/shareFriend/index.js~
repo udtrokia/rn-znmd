@@ -1,0 +1,99 @@
+import React,{Component} from 'react'
+import {
+    Modal,
+    View,
+    Text,
+    Image,
+    TouchableOpacity,
+    TouchableWithoutFeedBack,
+    DeviceEventEmitter
+}from 'react-native'
+
+import {hradio,wradio} from '../../radio'
+
+export default class ShareShop extends Component{
+    constructor(props){
+        super(props)
+        this.state={
+            shareFriend:false,
+        }
+    }
+    componentDidMount(){
+        DeviceEventEmitter.addListener('shareFriend',(visible)=>{
+            this.setState({shareFriend:visible})
+        })
+    }
+    render(){
+        return(
+                <Modal
+            style={{flex:1}}
+            visible={this.state.shareFriend}
+            transparent={true}
+            onRequestClose={() => {alert("Modal has been closed.")}}
+                >
+		<TouchableOpacity
+	    onPress={()=>DeviceEventEmitter.emit('shareFriend',false)}
+		>
+		<View>
+		<Image
+	    source={require('./static/bg.png')}
+	    style={{height:hradio*1280,width:wradio*720}}
+		>
+		<Image
+	    source={require('./static/modal.png')}
+	    style={{height:hradio*483,width:wradio*580,marginTop:hradio*300,alignSelf:'center'}}
+		     >
+		     
+		<TouchableOpacity
+	    onPress={()=>{
+		this.props.navigate('HomeScreen')
+	    }}
+	    style={{marginTop:hradio*170}}
+		>
+		<Image
+	    source={require('./static/weChat.png')}
+	    style={{height:hradio*81,width:wradio*578,alignSelf:'center'}}
+		/>		
+		     </TouchableOpacity>
+		     
+		<TouchableOpacity
+	    onPress={()=>{
+		this.props.navigate('HomeScreen')
+	    }}
+		>
+		<Image
+	    source={require('./static/friendCircle.png')}
+	    style={{height:hradio*81,width:wradio*578,alignSelf:'center'}}
+		/>		
+		     </TouchableOpacity>
+		     
+		<TouchableOpacity
+	    onPress={()=>{
+		this.props.navigate('HomeScreen')
+	    }}
+		>
+		<Image
+	    source={require('./static/qq.png')}
+	    style={{height:hradio*81,width:wradio*578,alignSelf:'center'}}
+		/>
+		     </TouchableOpacity>
+		     
+		<TouchableOpacity
+	    onPress={()=>{
+		this.props.navigate('HomeScreen')
+	    }}
+		>
+		<Image
+	    source={require('./static/qqSpace.png')}
+	    style={{height:hradio*81,width:wradio*578,alignSelf:'center'}}
+		/>		
+		     </TouchableOpacity>
+		     
+		</Image>
+		</Image>
+		</View>
+		</TouchableOpacity>						
+		</Modal>
+	)
+    }
+}

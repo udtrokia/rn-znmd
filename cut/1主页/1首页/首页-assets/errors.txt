@@ -1,0 +1,4 @@
+[9/14/2017, 9:25:48 PM] layer "map.white [SIZE][BOTH]": Expected end of input but "[" found.
+[9/14/2017, 9:25:48 PM] layer "map.white": Unsupported extension: white
+[9/14/2017, 9:25:48 PM] layer "search.png": Duplicate path: search.png
+[9/14/2017, 9:25:48 PM] layer "map.blue": Unsupported extension: blue

@@ -1,0 +1,31 @@
+
+import React,{Component} from 'react'
+import {
+    Button,
+    View
+} from 'react-native'
+
+export default class Test extends Component{
+    static navigationOptions={
+	title:'test'
+    }
+    render(){
+	const {navigate} = this.props.navigation
+	return(	    
+		<View>
+		<Button
+            onPress={() => navigate('Login')}
+            title="SignIn"
+		/>				
+		<Button
+            onPress={() => navigate('HomeScreen')}
+            title="Go to mainScreen"
+		/>
+		<Button
+            onPress={() => navigate('N_face')}
+            title="Nopsw"
+		/>						
+	    </View>
+	)
+    }
+}

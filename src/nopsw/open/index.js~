@@ -1,0 +1,66 @@
+import React, { Component } from 'react'
+import {
+    StyleSheet,
+    Dimensions,
+    TouchableOpacity,
+    StatusBar,
+    View,
+    Image,
+    Text
+} from 'react-native'
+
+const {height,width} = Dimensions.get('window')
+const [hradio,wradio] = [height/1280,width/720]
+
+export default class Face extends Component{
+    static navigationOptions={
+	header:null
+    }
+    render(){
+	return(
+                <View	    
+	    style={{
+		flex:1,
+		backgroundColor:'#f2f2f2'}}
+		>
+                <StatusBar
+            backgroundColor='#54aefc'
+                />
+                <Image
+            source={require('./static/title.png')}
+            style={{width:wradio*720,height:hradio*97}}
+                >
+                <TouchableOpacity
+            onPress={()=>{this.props.navigation.goBack()}}
+                >
+                <Image
+            source={require('./static/back.png')}
+            style={{height:hradio*40,width:wradio*22,marginLeft:wradio*20,marginTop:hradio*28}}
+                />
+                </TouchableOpacity>
+                <Image
+            source={require('./static/bg.png')}
+            style={{
+		resizeMode:'contain',
+		height:hradio*1134,width:wradio*720,marginTop:hradio*29}}
+                >
+		<TouchableOpacity
+	    onPress={()=>{this.props.navigation.navigate('N_face')}}
+		>
+		<Image
+	    source={require('./static/button.png')}
+	    style={{resizeMode:'contain',
+		    height:hradio*102,
+		    width:wradio*222,
+		    marginTop:hradio*1000,
+		    alignSelf:'center'}}
+		/>
+		</TouchableOpacity>		
+		</Image>
+            </Image>		
+            </View>
+        )
+    }
+}
+
+

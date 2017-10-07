@@ -1,0 +1,32 @@
+
+import React, {Component} from 'react'
+import {
+    View,
+    Dimensions,
+    Image,
+    TextInput,
+    Keyboard,
+    TouchableWithoutFeedback,
+    TouchableOpacity,
+    ScrollView,
+    DeviceEventEmitter
+} from 'react-native'
+
+import Goods from '../goods'
+import Comment from '../comment'
+import Shop from '../shop'
+
+const {height,width}=Dimensions.get('window')
+const hradio= height/1280;
+const wradio= width/720;
+
+export default class ShopBase extends Component{
+    constructor(props){
+        super(props)
+    }
+    render(){
+	return(
+	    <View></View>
+	)	
+    }
+}

@@ -1,0 +1,51 @@
+import React, { Component } from 'react'
+import {
+    StyleSheet,
+    TouchableOpacity,
+    StatusBar,
+    View,
+    Image,
+    Text
+} from 'react-native'
+
+import {hradio,wradio} from '../../radio'
+
+export default class Face extends Component{
+    static navigationOptions={
+	header:null
+    }
+    jumpNext = ()=>{
+	setTimeout(
+	    ()=>{
+		this.props.navigation.navigate('Mine')
+	    },3000)
+    }
+    render(){
+	return(
+		<View>
+		{this.jumpNext()}
+	        <StatusBar
+            translucent={false}
+            backgroundColor='#5eb0fe'
+                />
+		<Image
+	    source={require('./static/title.png')}
+	    style={{width:wradio*720,height:hradio*97}}
+		>
+		<TouchableOpacity
+	    onPress={()=>{this.props.navigation.goBack()}}
+		>
+		<Image
+	    source={require('./static/back.png')}
+	    style={{height:hradio*40,width:wradio*22,marginLeft:wradio*20,marginTop:hradio*28}}
+		/>
+		</TouchableOpacity>
+		<Image
+	    source={require('./static/bg.png')}
+	    style={{height:hradio*1134,width:wradio*720,marginTop:hradio*29}}
+		/>		
+	    </Image>
+	    </View>
+	)
+    }
+}

@@ -1,0 +1,120 @@
+import React, { Component } from 'react'
+import {
+    StyleSheet,
+    TouchableOpacity,
+    View,
+    Image,
+    Text,
+    DeviceEventEmitter
+} from 'react-native'
+
+import ShareFriend from '../../modal/shareFriend'
+
+import {hradio,wradio} from '../../radio'
+export default class Mine extends Component{
+    static navigationOptions={
+	header:null,
+	tabBarLabel:<Text style={{fontSize:hradio*20}}>我的</Text>,
+	tabBarIcon:({focused})=>{
+	    if(focused==false){
+	    return(<Image
+	     style={{height:hradio*46,width:wradio*46}}
+	     source={require('../static/mine.png')} />)}else{
+		 return(
+			 <Image
+		     style={{height:hradio*46,width:wradio*46}}
+		     source={require('../static/mine_tap.png')} />   
+		 )
+	     }
+	}
+    }
+    render(){
+	return(
+		<View>
+		<Image
+	    source={require('./static/info.png')}
+	    style={{width:wradio*720,height:hradio*262}}
+		>
+		<TouchableOpacity
+	    onPress={()=>this.props.navigation.navigate('Login')}
+	    style={{height:hradio*130,width:wradio*130,
+		    marginTop:hradio*75,marginLeft:wradio*26,position:'absolute'}}
+		/>
+		<TouchableOpacity
+	    onPress={()=>{this.props.navigation.navigate('N_open')}}
+	    style={{alignSelf:'flex-end',
+		marginTop:hradio*215,
+		marginRight:hradio*23}}
+		>
+		<Image
+	    source={require('./static/pay.png')}
+	    style={{
+		width:195*wradio,
+		height:hradio*29,
+	    }}
+		/>
+		</TouchableOpacity>
+		<TouchableOpacity
+	    onPress={()=>{alert('on coding')}}
+		>
+		<Image
+	    source={require('./static/bill.png')}
+	    style={{
+		height:hradio*97,
+		width:wradio*720,
+		marginTop:hradio*35,
+		marginBottom:hradio*20
+	    }}
+		/>
+		</TouchableOpacity>
+		<TouchableOpacity
+	    onPress={()=>{DeviceEventEmitter.emit('shareFriend',true)}}
+		>
+		<Image
+	    source={require('./static/share.png')}
+	    style={{
+		height:hradio*97,
+		width:wradio*720
+	    }}
+		/>
+		</TouchableOpacity>
+		<TouchableOpacity
+	    onPress={()=>{alert('on coding')}}
+		>
+		<Image
+	    source={require('./static/serve.png')}
+	    style={{
+		height:hradio*97,
+		width:wradio*720
+	    }}
+		/>
+		</TouchableOpacity>
+		<TouchableOpacity
+	    onPress={()=>{alert('on coding')}}
+		>
+		<Image
+	    source={require('./static/join.png')}
+	    style={{
+		height:hradio*97,
+		width:wradio*720,
+	    }}
+		/>
+		</TouchableOpacity>
+		<TouchableOpacity
+	    onPress={()=>{alert('on coding')}}
+		>
+		<Image
+	    source={require('./static/set.png')}
+	    style={{
+		marginTop:hradio*20,
+		height:hradio*97,
+		width:wradio*720
+	    }}
+		/>
+		</TouchableOpacity>				
+		</Image>
+		<ShareFriend navigate={this.props.navigation.navigate}/>
+		</View>
+	)
+    }
+}
